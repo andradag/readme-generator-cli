@@ -82,9 +82,74 @@ const questions = [
   },
 ];
 
+const constructReadme = (answers) => {
+  return `# ${answers.projectTitle} ![${
+    answers.license
+  }](https://img.shields.io/static/v1?label=${encodeURI(
+    answers.license
+  )}&message=License&color=green)
+
+## Table of Contents
+
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Tests](#tests)
+- [Contributing](#contributing)
+- [License](#license)
+- [Questions](#questions)
+
+## Description
+
+${answers.description}
+
+## Installation
+
+Run the following script to install the packages required for the application:
+
+\`\`\`
+ADD TEXT HERE
+\`\`\`
+
+## Usage
+
+To use the application run the following script:
+
+\`\`\`
+ADD TEXT HERE
+\`\`\`
+
+## Tests
+
+To use the application run the following script:
+
+\`\`\`
+ADD TEXT HERE
+\`\`\`
+
+## Contributing
+
+${answers.contributionGuidelines}
+
+## License
+
+${answers.license}
+
+## Questions
+
+Please contact me on ${
+    answers.emailAddress
+  } or visit my GitHub Profile [here](https://github.com/${
+    answers.githubUsername
+  })`;
+};
+
 const start = async () => {
   const answers = await inquirer.prompt(questions);
   console.log(answers);
+
+  const readme = constructReadme(answers);
+  console.log(readme);
 };
 
 start();
