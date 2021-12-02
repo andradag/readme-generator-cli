@@ -93,9 +93,9 @@ const constructReadme = (answers) => {
 ## Table of Contents
 
 - [Description](#description)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Tests](#tests)
+${answers.installationConfirm ? `- [Installation](#installation)` : ""}
+${answers.usageConfirm ? `- [Usage](#usage)` : ""}
+${answers.testConfirm ? `- [Tests](#tests)` : ""}
 - [Contributing](#contributing)
 - [License](#license)
 - [Questions](#questions)
@@ -104,29 +104,41 @@ const constructReadme = (answers) => {
 
 ${answers.description}
 
-## Installation
+${
+  answers.installationConfirm
+    ? `## Installation
 
 Run the following script to install the packages required for the application:
 
 \`\`\`
-ADD TEXT HERE
-\`\`\`
+${answers.installationSteps}
+\`\`\``
+    : ""
+}
 
-## Usage
-
-To use the application run the following script:
-
-\`\`\`
-ADD TEXT HERE
-\`\`\`
-
-## Tests
+${
+  answers.usageConfirm
+    ? `## Usage
 
 To use the application run the following script:
 
 \`\`\`
-ADD TEXT HERE
+${answers.usageSteps}
+\`\`\``
+    : ""
+}
+
+${
+  answers.testConfirm
+    ? `## Tests
+
+To use the application run the following script:
+
 \`\`\`
+${answers.testSteps}
+\`\`\``
+    : ""
+}
 
 ## Contributing
 
