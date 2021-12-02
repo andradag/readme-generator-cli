@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const fs = require("fs");
 
 const questions = [
   {
@@ -144,12 +145,22 @@ Please contact me on ${
   })`;
 };
 
+const writeToFile = (filePath, data) => {
+  try {
+    fs.writeFileSync(filePath, data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 const start = async () => {
   const answers = await inquirer.prompt(questions);
-  console.log(answers);
 
   const readme = constructReadme(answers);
-  console.log(readme);
+
+  writeToFile("GENERATED_README.md", readme);
+
+  console.log("Successfully generated readme file");
 };
 
 start();
